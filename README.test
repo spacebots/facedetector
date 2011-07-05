@@ -1,0 +1,5 @@
+for i in img-72x72/test/1/*.png      
+do
+  echo "####### $i #######"
+  ~/workspace/efj/./eig3RecOne img-72x72/all.dat $i
+done >&! resultados.1-test.log
