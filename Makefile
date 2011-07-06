@@ -1,16 +1,13 @@
-LIB=-L/usr/lib64 -lopencv_core -lopencv_highgui -lopencv_objdetect
-INC=-I. -I/usr/include/opencv -std=c++0x
+INC=-I. -I/usr/include/opencv
+CXXFLAGS = -fPIC -fpic -std=c++0x
 
-all: facedetector-standalone facedetector
+all: libfacedetector.so
 
-facedetector: FaceDetector.o facedetector.o
-	g++ -o $@ $^ $(LIB)
-
-facedetector-standalone: FaceDetector.o facedetector-standalone.o
-	g++ -o $@ $^ $(LIB)
+libfacedetector.so: FaceDetector.o
+	g++ -shared -o $@ $^
 
 %.o: %.cpp
-	g++ -c $< $(INC)
+	g++ $(INC) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	-rm FaceDetector.o facedetector.o facedetector facedetector-standalone
+	-rm FaceDetector.o libfacedetector.so
