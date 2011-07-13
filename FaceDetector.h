@@ -22,6 +22,11 @@
 #include <time.h>
 #include <cctype>
 #include <iostream>
+
+//-----------------------------------------------
+
+namespace efj { class Database; }
+
 //-----------------------------------------------
 
 /**
@@ -32,7 +37,7 @@ public:
 
   inline FaceDetector(int camId, const char* cascade_name) :
     m_dScale(1.20), m_bflagShowResult(true), m_dMidX(0), m_iNumFaces(0), m_bFaceDetected(false),
-        m_bUserProximicFlag(false), m_cascade(cascade_name), m_camId(camId), m_criteria(0),
+        m_bUserProximicFlag(false), m_cascade(cascade_name), _camId(camId), m_criteria(0),
      m_drawName(true), m_drawFrame(true), m_writeFrames(false) {
 
     if (m_cascade.empty()) {
@@ -41,9 +46,10 @@ public:
     }
 
     std::ostringstream oss;
-    oss << "result " << m_camId;
-    if (m_bflagShowResult)
-      cvNamedWindow(oss.str().c_str(), 1);
+    oss << "result " << _camId;
+    _windowName = oss.str().c_str();
+//    if (m_bflagShowResult)
+//      cvNamedWindow(oss.str().c_str(), 1);
   }
 
   ~FaceDetector();
@@ -67,7 +73,7 @@ public:
     return m_bflagShowResult;
   }
 
-  void StartFaceDetection();
+  void StartFaceDetection(const efj::Database *efjdb = NULL);
 
   inline double GetFaceMidPointX() {
     return m_dMidX;
@@ -112,7 +118,9 @@ private: // attributes
 
   cv::CascadeClassifier m_cascade;
 
-  int m_camId;
+  int _camId;
+
+  std::string _windowName;
 
   int m_criteria;  // detection criteria
 
@@ -121,7 +129,7 @@ private: // attributes
 private: // methods
 
   //detects a face and draws rectangle around the face
-  void DetectAndDraw(cv::Mat &frame, double dScale);
+  void DetectAndDraw(cv::Mat &frame, double dScale, const efj::Database *efjdb);
 
   //detect face in a region of an image
   int DetectSubFace(cv::Mat &cvTempimage) {
