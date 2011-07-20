@@ -138,27 +138,28 @@ void FaceDetector::DetectAndDraw(cv::Mat &frame, double m_dScale, const efj::Dat
       cv::Point2d pt2((r.x + r.width) * m_dScale, (r.y + r.height) * m_dScale);
 
       if (m_drawName && efjdb) {
+        std::vector<std::string> people = {"david", "joana", "miguel", "jaime"};
         int result;
-        std::ostringstream namess;
 
         Eigen::VectorXd image;
         image.resize(72 * 72);
         cv::Mat scaled;
         cv::resize(recorte, scaled, cv::Size(72, 72), 72.0 / frame.cols, 72.0 / frame.rows,
                    cv::INTER_CUBIC);
-        //cv::imshow("scaled", scaled);
+        cv::cvtColor(scaled, scaled, CV_BGR2GRAY);
+        //DEBUG cv::imshow("scaled", scaled);
         for (int rx = 0; rx < scaled.rows; rx++) {
           for (int cx = 0; cx < scaled.cols; cx++) {
-            //image(72 * rx + cx) = scaled.at<double> (rx, cx);
-            image(72 * rx + cx) = scaled.data[72 * rx + cx];
+            image(72 * rx + cx) = (double)scaled.data[72 * rx + cx];
+            //DEBUG std::cout << (int)image(72 * rx + cx) << "\n";
           }
         }
-        if (efjdb->id(image, 0.5, result)) {
-          namess << "R" << result;
-        } else {
-          namess << "unknown";
+        std::string name = "";  //unknown
+        if (efjdb->id(image, 0.6, result)) {
+          //namess << "R" << result;
+          name = people[result];
         }
-        cv::putText(frame, namess.str(), pt1e, cv::FONT_HERSHEY_SIMPLEX, 0.5,
+        cv::putText(frame, name, pt1e, cv::FONT_HERSHEY_SIMPLEX, 0.5,
                     cv::Scalar(0, 0, 255, 0), 2);
       }
       if (m_drawFrame)
