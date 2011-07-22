@@ -1,10 +1,3 @@
-//----------------------------------------------
-// Heriot-Watt University
-// MACS 
-// www.lirec.eu
-// author: Amol Deshmukh
-// Date: 17/03/2009
-//-----------------------------------------------
 
 #include <sstream>
 #include "FaceDetector.h"
@@ -80,7 +73,10 @@ void FaceDetector::StartFaceDetection(const efj::Database *efjdb) {
 }
 
 //-------------------------------------------------------------
-
+// Some code in this function was partially/originally written
+// in C at Heriot-Watt University/MACS (www.lirec.eu) by
+// Amol Deshmukh (17/03/2009)
+//-----------------------------------------------
 void FaceDetector::DetectAndDraw(cv::Mat &frame, double m_dScale, const efj::Database *efjdb) {
   cv::Mat gray(frame.cols, frame.rows, 8, 1);
   cv::cvtColor(frame, gray, CV_BGR2GRAY);

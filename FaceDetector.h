@@ -1,11 +1,3 @@
-//----------------------------------------------
-// Heriot-Watt University
-// MACS 
-// www.lirec.eu
-// author: Amol Deshmukh
-// Date: 17/03/2009
-//-----------------------------------------------
-
 #ifndef FACEDETECT_INCLUDEDEF_H
 #define FACEDETECT_INCLUDEDEF_H
 
@@ -132,6 +124,11 @@ private: // methods
   void DetectAndDraw(cv::Mat &frame, double dScale, const efj::Database *efjdb);
 
   //detect face in a region of an image
+  //-------------------------------------------------------------
+  // Some code in this function was partially/originally written
+  // in C at Heriot-Watt University/MACS (www.lirec.eu) by
+  // Amol Deshmukh (17/03/2009)
+  //-----------------------------------------------
   int DetectSubFace(cv::Mat &cvTempimage) {
     std::vector<cv::Rect> subfaces;
     m_cascade.detectMultiScale(cvTempimage, subfaces, m_dScale, 3, 0 | CV_HAAR_DO_CANNY_PRUNING, cv::Size(0, 0));
