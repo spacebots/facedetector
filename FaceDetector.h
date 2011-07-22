@@ -1,5 +1,5 @@
-//$Id: FaceDetector.h,v 1.4 2011/07/22 14:30:26 ferreira Exp $
-
+// $Id: FaceDetector.h,v 1.5 2011/07/22 14:46:58 david Exp $
+//
 // Copyright (C) 2008-2011 INESC ID Lisboa.
 //
 // This program is free software; you can redistribute it and/or modify
@@ -16,10 +16,12 @@
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 //
-
-//$Log: FaceDetector.h,v $
-//Revision 1.4  2011/07/22 14:30:26  ferreira
-//Added Copyright comment
+// $Log: FaceDetector.h,v $
+// Revision 1.5  2011/07/22 14:46:58  david
+// Minor cleanup.
+//
+// Revision 1.4  2011/07/22 14:30:26  ferreira
+// Added Copyright comment
 //
 
 #ifndef FACEDETECT_INCLUDEDEF_H
