@@ -1,4 +1,4 @@
-// $Id: FaceDetector.h,v 1.5 2011/07/22 14:46:58 david Exp $
+// $Id: FaceDetector.h,v 1.6 2012/08/23 14:28:01 david Exp $
 //
 // Copyright (C) 2008-2011 INESC ID Lisboa.
 //
@@ -17,6 +17,9 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 //
 // $Log: FaceDetector.h,v $
+// Revision 1.6  2012/08/23 14:28:01  david
+// Removed float.h from inclusions.
+//
 // Revision 1.5  2011/07/22 14:46:58  david
 // Minor cleanup.
 //
@@ -35,7 +38,6 @@
 #include <cstring>
 #include <assert.h>
 #include <cmath>
-#include <float.h>
 #include <limits.h>
 #include <time.h>
 #include <cctype>
