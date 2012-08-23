@@ -3,6 +3,7 @@
 	<name>facedetector</name>
 	<comment></comment>
 	<projects>
+		<project>efj</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
