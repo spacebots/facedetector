@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.4 2011/07/22 14:46:58 david Exp $
+# $Id: Makefile,v 1.5 2014/08/04 10:10:34 rzl Exp $
 #
 # Copyright (C) 2008-2011 INESC ID Lisboa.
 #
@@ -17,23 +17,27 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 #
 # $Log: Makefile,v $
+# Revision 1.5  2014/08/04 10:10:34  rzl
+# Changed paths to Eigen3 includes from local to /usr/include
+#
 # Revision 1.4  2011/07/22 14:46:58  david
 # Minor cleanup.
 #
 #
-EIGEN=/afs/l2f.inesc-id.pt/home/ferreira/face-recognition/eigen
-EFJ=../efj
-QTDIR=/usr/lib64/qt4
-INC=-I. -I/usr/include/opencv -I$(EFJ) -I$(EIGEN) -I$(QTDIR)/include/QtCore -I$(QTDIR)/include/QtGui
-CXXFLAGS = -fPIC -fpic -m64 -pipe -std=c++0x
+EIGEN    = /usr/include/eigen3
+EFJ      = ../efj
+QTDIR    = /usr/lib64/qt4
+INC      = -I. -I/usr/include/opencv -I$(EFJ) -I$(EIGEN) -I$(QTDIR)/include/QtCore -I$(QTDIR)/include/QtGui
+CXXFLAGS = -fPIC -fpic -m64 -pipe -std=c++11
 
 all: libfacedetector.so
 
 libfacedetector.so: FaceDetector.o
-	g++ -shared -o $@ $^
+	$(CXX) -shared -o $@ $^
 
 %.o: %.cpp
-	g++ $(INC) $(CXXFLAGS) -c $< -o $@
+	$(CXX) $(INC) $(CXXFLAGS) -c $< -o $@
 
 clean:
 	-rm FaceDetector.o libfacedetector.so
+
